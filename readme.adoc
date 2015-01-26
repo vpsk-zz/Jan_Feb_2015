@@ -1,0 +1,115 @@
+= Sencha Touch
+
+****
+*Prabhu Sunderaraman* +
+*Email*: prabhu@durasoftindia.com +
+*Blog*: http://healthycoder.in +
+*Books*: Practical Ext JS 4, Spring 3.0 Black Book +
+*Editor*: http://healthycodemagazine.com 
+****
+
+== Modus Operandi
+
+* Zero-PowerPoint Presentation
+* Learn basic concepts by writing code
+* Learn advanced concepts by writing code
+* Experiment new stuff by writing code
+
+== Topics.todo
+
+=== I
+*	Mobile space
+*	Native vs. Web
+*	Browser support; Legacy browsers
+*	Mobile browsers
+*	Device Support
+*	Mobile JavaScript frameworks
+*	Getting started 
+
+=== II
+
+*	What is Sencha Touch?
+*	Need for Sencha touch
+*	Features
+*	Benefits
+*	Developer tools
+*	Getting started with Sencha Touch
+*	Setting up the environment
+*	A Sample application 
+
+=== III
+
+*	JavaScript language
+*	Types
+*	Collections
+*	Higher order functions
+*	arguments
+*	this keyword
+*   Classes and Objects
+*   JSON
+
+=== IV
+
+*	Class architecture
+*	System, Definition, Loading
+*	Fundamental classes
+*	Ext.define, Ext.create
+*	constructor, config
+*	statics, mixins
+*	extend
+
+=== V
+
+*	Forms
+*	Text fields, checkboxes and radio buttons
+*	Buttons
+*	Carousel
+*	Audio and Video
+*	Using Containers
+*	Panels, Boxes
+*	Cards
+*	Tabs
+*	Toolbars and Icons
+*	Navigation Views
+
+=== VI
+
+*	Data Stores
+*	Models, Proxies, Readers, Stores
+*	Validating data
+*	HTML 5 Data Storage
+*	Data Lists
+*	List events
+
+=== VII
+
+*	Styles
+*	Detecting the device
+*	Changing orientation
+*	Device Profiles
+*	Themes
+*	Event handling
+*	Touch, Scroll, Tap events
+*	Swipe, Pinch, Drag events
+
+=== VIII
+
+*	What is MVC?
+*	Structure of an MVC application
+*	Model, View and Controllers
+*	Namespaces
+*	app.js
+*	Routing
+*	Creating a Sencha Touch MVC application
+*	Testing Sencha Touch applications
+*	Using Sencha Cmd tool
+*	Sencha Architect
+	
+=== IX	
+
+*   Native App using Sencha Touch		
+*	Need for PhoneGap/Cordova
+*	Setting up PhoneGap with iOS
+*	Setting up PhoneGap with Android
+*	Sample PhoneGap application
+
