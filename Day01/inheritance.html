@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css" type="text/css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.define("Employee",{
+			config : {
+				id: "", name : "", salary: 0
+			},
+			constructor : function(cfg){
+				this.initConfig(cfg);
+			},
+			work : function(hours){
+				console.log("Employee " + this.getName() + " sleeps " + hours + " hours");
+			}
+		});
+		Ext.define("Manager",{
+			extend : "Employee",
+			config : {
+				level : 3,
+				shares : 1000
+			},
+			work : function(hours){
+				this.callParent(arguments);
+				console.log("Manager " + this.getName() + " snores " + hours + " hours");
+			}
+		});
+		var m1 = Ext.create("Manager",{
+			name : "Sam", id : 120112, salary: 100000,
+			level : 5
+		});
+		m1.work(12);
+		
+		
+		
+		
+		
+		</script>
+	</head>
+</html>		
