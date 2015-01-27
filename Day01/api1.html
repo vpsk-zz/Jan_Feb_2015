@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css" type="text/css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.define("Person",{
+			config : {
+				name : "",
+				age : -1,
+				gender : "M"
+			},
+			/*
+			setAge : function(newAge){
+				console.log("setAge is called");
+				this.config.age = newAge;
+			},
+			getAge : function(){
+				return this.config.age;
+			},
+			*/
+			constructor : function(obj){
+				this.initConfig(obj);
+				console.log("Person created");
+			},
+			eat : function(items){
+				console.log(this.getName() + " is eating " + items);
+			}
+		});
+		var pe1 = Ext.create("Person",{
+			name : "Sam", age : "12"
+		});
+		pe1.eat("Rice");
+		console.log(pe1.getName());
+		pe1.setAge(13);
+		console.log(pe1.getAge())
+		
+		var pe2 = Ext.create("Person",{
+			name : "Rani",age:38,gender:"F"
+		});		
+		pe2.eat("Roti");
+		console.log(pe2.getGender());
+		
+		Ext.define("Car",{});
+		var c1 = Ext.create("Car",{});
+		var c2 = Ext.create("Car",{});
+		
+		//Class names in Sencha begin with Caps
+		Ext.define("Accenture.bangalore.whiteField.Person",{});
+		var p1 = Ext.create("Accenture.bangalore.whiteField.Person");
+		
+		
+		</script>
+	</head>
+</html>		

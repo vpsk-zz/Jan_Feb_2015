@@ -1,0 +1,43 @@
+Convert the following Java code to Sencha.
+
+public class Account{
+	private double balance;
+	private long accountNumber;
+	private ArrayList<String> transactions;
+	
+	public double getBalance(){
+		return balance;
+	}
+	public Account(long accNum){
+		this.accountNumber = accNum;
+		this.balance = 10000;
+		transactions = new ArrayList();
+	}
+	public Account(long accNum,double balance){
+		this.balance = balance;
+		this.accountNumber = accNum;
+		transactions = new ArrayList();
+	}
+	public void deposit(double amount){
+		balance += amount;
+		addTransaction("Deposit of Rs." + amount + ". Balance: " + balance);
+	}
+	public void withdraw(double amount){
+		balance -= amount;
+		addTransaction("Withdraw of Rs." + amount + ". Balance: " + balance);
+	}
+	private void addTransaction(String txn){
+		transactions.add(txn);
+	}
+	public void printStatement(){
+		System.out.println("**Print Statement**");
+		for(int i = 0;i< transactions.size();i++){
+			System.out.println(transactions.get(i));
+		}
+	}
+}
+Account acc1 = new Account(1012010,50000);
+acc1.deposit(2000);
+acc1.withdraw(1000);
+System.out.println(acc1.getBalance());
+acc1.printStatement();
