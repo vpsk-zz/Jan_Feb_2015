@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<script>
+		//MAKE THIS CODE WORK WITHOUT ADDING SENCHA JS files
+		//YOUR CODE GOES HERE
+		var Ext = {
+			create : function(className,config){
+				if(className == "Ext.Label"){
+					var label = "<label>" + config.html + "</label>";
+					document.body.innerHTML = label;
+				}
+				else{
+					throw new Error(className + " not found");
+				}
+			},
+			application : function(obj){
+				window.onload = obj.launch;
+			}
+		};
+		Ext.application({
+			launch : function(){
+				Ext.create("Ext.Label",{
+					html : "Pleaseeeee Leaveeeee us!!!"
+				});
+			}
+		});
+		</script>
+	</head>	
+</html>

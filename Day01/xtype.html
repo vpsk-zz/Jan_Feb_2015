@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css" type="text/css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		var tb = {
+					xtype : "textfield",
+					placeHolder : "Name"
+				 };
+		var btn = Ext.create("Ext.Button",{
+					text : "Go"
+				  });		 
+		Ext.application({
+			launch : function(){
+				Ext.create("Ext.Panel",{
+					fullscreen : true,
+					items : [
+						btn, 
+						{ xtype:"button",text:"Hello"},
+						Ext.create("Ext.Panel",{
+							margin : "15",
+							items : [
+								
+								//btn, 
+								{
+									xtype:"button",
+									text:"Inner"
+								}
+							]
+						})
+					]
+				});
+				
+			}
+		});
+		</script>
+	</head>
+</html>		

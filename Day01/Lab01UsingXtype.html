@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css" type="text/css">
+		<style>
+		.correct {
+			color : blue;
+		}
+		.incorrect {
+			color : red;
+		}
+		</style>
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		function login(){
+			var userName = Ext.getCmp("username");
+			var password = Ext.getCmp("password");
+			var message = Ext.getCmp("message");
+			message.removeCls(["correct","incorrect"]);
+			
+			if(userName.getValue() == "admin" && password.getValue() == "admin"){
+				message.setHtml("Signing in...");
+				userName.disable();
+				password.disable();
+				Ext.getCmp("submit").disable();
+				message.addCls("correct");
+			}
+			else{
+				message.setHtml("Invalid Credentials");
+				message.addCls("incorrect");
+			}
+		}
+		Ext.application({
+			launch : function(){
+				Ext.create("Ext.Panel",{
+					fullscreen : true,
+					centered : true,
+					width : "50%",
+					height : "50%",
+					items : [
+						{
+							xtype : "titlebar",
+							title : "Login",
+							height : "5%"
+						},
+						{
+							xtype : "textfield",
+							id : "username",
+							placeHolder : "User Name"
+						},
+						{
+							xtype : "passwordfield",
+							id : "password",
+							placeHolder : "Password"
+						},
+						{
+							xtype : "button",
+							text : "Submit",
+							id : "submit",
+							width : "20%",
+							margin:"5",
+							height : "15%",
+							listeners : {
+								tap : login
+							}
+						},
+						{
+							xtype : "label",
+							html : "",
+							id : "message"
+						}
+					]
+				});
+			}
+		});
+		</script>
+	</head>
+</html>		
