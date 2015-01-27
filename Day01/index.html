@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css" type="text/css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.application({
+			launch : function(){
+				//alert("Hello Sencha Touch");
+				/*Ext.create("Ext.field.Checkbox",{
+					label : "Do you want a break?",
+					fullscreen : true
+				});*/
+				/*Ext.create("Ext.field.Text",{
+					fullscreen : true,
+					placeHolder : "First Name"
+				});
+				*/
+				
+				Ext.create("Ext.Button",{
+					text : "Hello Button",
+					fullscreen : true,
+					width : "50%",
+					height:"50%",
+					margin: 10,
+					centered : true,
+					listeners : {
+						tap : function(){
+							alert("Button tapped");
+						}
+					}
+				});
+				
+				/*Ext.create("Ext.Label",{
+					html : "Hello Sencha Touch",
+					fullscreen : true
+				});
+				*/
+			}
+		});
+		</script>
+	</head>
+	<body>
+	</body>		
+</html>
