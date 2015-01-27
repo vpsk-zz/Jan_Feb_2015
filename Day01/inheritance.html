@@ -3,6 +3,30 @@
 		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css" type="text/css">
 		<script src="touch/sencha-touch-all.js"></script>
 		<script>
+		
+		Ext.define("Company",{
+			singleton : true,
+			config : {
+				name : "DuraSoft",
+				location : "Chennai"
+			},
+			constructor : function(cfg){
+				this.initConfig(cfg);
+			},
+			printInfo : function(){
+				console.log("****Some info****");
+			}
+		});
+		console.log(Company.getName());
+		Company.printInfo();
+		
+		//var c1 = Ext.create("Company");
+		//console.log(c1.getName());
+		//c1.printInfo();
+		
+		
+		
+		
 		Ext.define("Employee",{
 			config : {
 				id: "", name : "", salary: 0
