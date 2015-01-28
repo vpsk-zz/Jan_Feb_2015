@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css" type="text/css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		function connectToServer(){
+			Ext.Ajax.request({
+				url : "info",
+				method : "GET",
+				params : {
+					name : Ext.getCmp("name").getValue()
+				},
+				success : function(output){
+					var response = output.responseText;
+					Ext.getCmp("message").setHtml(response);
+				}
+			});
+		}
+		Ext.application({
+			launch : function(){
+				Ext.create("Ext.Panel",{
+					fullscreen : true,
+					items : [
+						{ xtype : "titlebar", title : "AJAX", height : "5%"},
+						{
+							xtype : "textfield",
+							placeHolder : "Name",
+							id : "name"
+						},
+						{
+							xtype : "button",
+							text : "Click",
+							listeners : {
+								tap : connectToServer
+							}
+						},
+						{
+							xtype : "label",
+							id : "message"
+						}
+					]
+				});
+			}
+		});
+		</script>
+	</head>
+	<body>
+	</body>		
+</html>
