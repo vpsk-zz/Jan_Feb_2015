@@ -87,7 +87,7 @@
 		var guessingGame = Ext.create("GuessingGame",{
 			target : Math.round(Math.random()*100)
 		});
-		var gameOverPanel = Ext.create("GameOverPanel");
+		var gameOverPanel;
 		
 		function gameOverYesButtonTapped(){
 			gameOverPanel.hide();
@@ -108,6 +108,8 @@
 			Ext.getCmp("attemptslabel").setHtml("Attempts: " + guessingGame.getAttempts());
 			Ext.getCmp("messagelabel").setHtml(guessingGame.getMessage());
 			if(guessingGame.getGameOver()){
+				if(!gameOverPanel)
+					gameOverPanel = Ext.create("GameOverPanel");
 				gameOverPanel.showBy(Ext.getCmp("playbutton"));
 			}
 		}
