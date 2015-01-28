@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css" type="text/css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.define("Movie",{
+			extend : "Ext.data.Model",
+			config : {
+				fields : ["name","year","rating"]
+			},
+			validateYear : function(rec){
+				//validate year
+			}
+		});
+		Ext.define("MovieStore",{
+			extend : "Ext.data.Store",
+			config : {
+				model : "Movie",
+				//fields : ["name","year","rating"],
+				data : [
+					{ name:"Baby", year:2015, rating:"A"},
+					{ name:"Baba", year:2003, rating:"U"},
+					{ name:"Argo", year:2013, rating:"UA"},
+					{ name:"Interstellar", year:2014, rating:"U"}					
+				]
+			}
+		});
+		var movieStore = Ext.create("MovieStore");
+		
+		Ext.application({
+			launch : function(){
+				Ext.create("Ext.List",{
+					fullscreen : true,
+					store : movieStore,
+					itemTpl : "<b>{name}</b>({year}), <i>{rating}</i>"
+				});	
+			}
+		});
+		</script>
+	</head>
+	<body>
+	</body>		
+</html>
