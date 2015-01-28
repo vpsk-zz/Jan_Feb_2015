@@ -8,8 +8,10 @@
 			config : {
 				fields : ["name","year","rating"]
 			},
-			validateYear : function(rec){
-				//validate year
+			printInfo : function(){
+				console.log(this.get("name"));
+				console.log(this.get("year"));
+				console.log(this.get("rating"));
 			}
 		});
 		Ext.define("MovieStore",{
@@ -32,7 +34,21 @@
 				Ext.create("Ext.List",{
 					fullscreen : true,
 					store : movieStore,
-					itemTpl : "<b>{name}</b>({year}), <i>{rating}</i>"
+					itemTpl : "<b>{name}</b>({year}), <i>{rating}</i>",
+					listeners : {
+						itemdoubletap : function(a,index){
+							index++;
+							if(index == movieStore.getCount())
+								index = 0;
+							var record = movieStore.getAt(index);
+							record.printInfo();
+						},
+						itemtap : function(a,b,c,record){
+							console.log(record.get("name"));
+							console.log(record.get("year"));
+							console.log(record.get("rating"));
+						}
+					}
 				});	
 			}
 		});
