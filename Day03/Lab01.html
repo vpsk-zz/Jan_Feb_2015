@@ -3,6 +3,7 @@
 		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css" type="text/css">
 		<script src="touch/sencha-touch-all.js"></script>
 		<script>
+		var baseUrl = "http://api.openweathermap.org/data/2.5/weather?q=CITYNAME&units=metric";
 		var localStorageProxy = {
 			type : "localstorage",
 			id : "name"
@@ -39,6 +40,7 @@
 				}
 			}
 		});
+		var cityStore = Ext.create("CityStore");
 		
 		Ext.define("CitiesPanel",{
 			extend : "Ext.Panel",
@@ -49,6 +51,15 @@
 						xtype : "titlebar", 
 						title:"Cities",
 						height : "5%"
+					},
+					{
+						xtype : "list",
+						height : "100%",
+						store : cityStore,
+						itemTpl : "{name}",
+						listeners : {
+							itemtap : cityItemTapped
+						}
 					}
 				]
 			}
@@ -75,15 +86,43 @@
 			}
 		});
 		
-		var cityStore = Ext.create("CityStore");
-		cityStore.load();
+		function cityItemTapped(a,b,c,record){
+			var city = record.get("name");
+			var url = baseUrl.replace("CITYNAME",city);
+			Ext.Ajax.on("beforerequest",function(){
+				Ext.Viewport.setMasked({xtype:"loadmask"});
+			});
+			Ext.Ajax.on("requestcomplete",function(){
+				Ext.Viewport.setMasked(false);	
+			});
+			Ext.Ajax.on("requestexception",function(){
+				console.log("Error sending request");
+				Ext.Viewport.setMasked(false);	
+			});
+			Ext.Ajax.request({
+				url : url,
+				timeout : 10000,
+				useDefaultXhrHeader : false,
+				success : function(response){
+					var jsonString = response.responseText;
+					var weatherReport = Ext.JSON.decode(jsonString);
+					var min = weatherReport.main.temp_min;
+					var max = weatherReport.main.temp_max;
+					var humidity = weatherReport.main.humidity;
+					Ext.getCmp("id-cityweatherpanel").setHtml(min + ", " + max + ", " + humidity);
+					Ext.Viewport.setActiveItem(1);
+				}
+			});
+		}
 		Ext.application({
 			launch : function(){
+				cityStore.load();
 				Ext.Viewport.add({
 					xtype : "citiespanel"
 				});
 				Ext.Viewport.add({
-					xtype : "cityweatherpanel"
+					xtype : "cityweatherpanel",
+					id : "id-cityweatherpanel"
 				});
 				
 				//Viewport is a Panel with card layout and fullscreen set to true
