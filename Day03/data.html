@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css" type="text/css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.define("Movie",{
+			extend : "Ext.data.Model",
+			config : {
+				fields : ["name","year","rating"]
+			}
+		});
+		Ext.define("MovieStore",{
+			extend : "Ext.data.Store",
+			config : {
+				model : "Movie",
+				autoLoad : false,
+				proxy : {
+					type : "ajax",
+					url : "movies",
+					reader : {
+						type : "json",
+						rootProperty : "moviesInIndia"
+					}
+				}
+			}
+		});
+		var movieStore = Ext.create("MovieStore");
+		Ext.application({
+			launch : function(){
+				Ext.create("Ext.Panel",{
+					fullscreen : true,
+					items : [
+						{
+							xtype : "titlebar",title:"Movies",
+							height:"5%",
+							items : [
+								{
+									xtype : "button",
+									text : "Fetch",
+									listeners : {
+										tap : function(){
+											movieStore.load();
+										}
+									}
+								}
+							]
+						},
+						{
+							xtype : "list",
+							height : "100%",
+							store : movieStore,
+							itemTpl : "{name} ({year}) <i>{rating}</i>"							
+						}
+					]
+				});
+			}
+		});
+		</script>
+	</head>
+	<body>
+	</body>		
+</html>
