@@ -15,7 +15,6 @@
 				rootProperty : "cities"
 			}
 		};
-		
 		Ext.define("CityStore",{
 			extend : "Ext.data.Store",
 			config : {
@@ -27,7 +26,8 @@
 					},
 					load : function(storeObj){
 						var count = storeObj.getCount();
-						if(count == 0){
+						if(count == 0 && storeObj.getProxy()
+											.getInitialConfig("type") != "ajax"){
 							storeObj.setProxy(ajaxProxy);
 							storeObj.load();
 						}
@@ -39,8 +39,59 @@
 				}
 			}
 		});
+		
+		Ext.define("CitiesPanel",{
+			extend : "Ext.Panel",
+			alias : "widget.citiespanel",
+			config : {
+				items : [
+					{ 
+						xtype : "titlebar", 
+						title:"Cities",
+						height : "5%"
+					}
+				]
+			}
+		});
+		Ext.define("CityWeatherPanel",{
+			extend : "Ext.Panel",
+			alias : "widget.cityweatherpanel",
+			config : {
+				items : [{ 
+					xtype : "titlebar", 
+					title:"",
+					height : "5%",
+					items : [
+						{
+							iconCls : "arrow_left",
+							listeners : {
+								tap : function(){
+									Ext.Viewport.setActiveItem(0);
+								}
+							}
+						}
+					]
+				}]
+			}
+		});
+		
 		var cityStore = Ext.create("CityStore");
-		cityStore.load();	
+		cityStore.load();
+		Ext.application({
+			launch : function(){
+				Ext.Viewport.add({
+					xtype : "citiespanel"
+				});
+				Ext.Viewport.add({
+					xtype : "cityweatherpanel"
+				});
+				
+				//Viewport is a Panel with card layout and fullscreen set to true
+				//It's automatically created during launch
+				// Ext.Viewport.add(Ext.create("CitiesPanel"));
+// 				Ext.Viewport.add(Ext.create("CityWeatherPanel"));
+			}
+		});		
 		</script>
 	</head>
 	<body>
