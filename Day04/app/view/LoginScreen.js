@@ -11,21 +11,28 @@ Ext.define("India.view.LoginScreen",{
 			{
 				xtype : "textfield",
 				placeHolder : "User Name",
-				id : "usernametext"
+				//id : "usernametext",
+				value : "admin"
 			},
 			{
 				xtype : "passwordfield",
 				placeHolder : "Password",
-				id : "passwordtext"
+				//id : "passwordtext",
+				value : "admin"
 			},
 			{
 				xtype : "button",
 				text : "Login",
-				id : "loginbutton"
+				//id : "loginbutton"
+			},
+			{
+				xtype : "button",
+				text : "Cancel",
+				//id : "loginbutton"
 			},
 			{
 				xtype : "label",
-				id : "messagelabel"
+				//id : "messagelabel"
 			}
 		]
 	}

@@ -5,10 +5,11 @@ Ext.Loader.setConfig({
 Ext.application({
 	name : "India",
 	appFolder : "app",
-	controllers : ["AuthenticationController"],
-	models : [],
-	stores : [],
-	views : ["LoginScreen"],
+	controllers : ["AuthenticationController","MovieController"],
+	models : ["Movie"],
+	stores : ["MovieStore"],
+	views : ["LoginScreen","MovieScreenUtil","MovieScreen",
+				"DeleteMovieConfirmationPanel"],
 	profiles : [],
 	launch : function(){
 		Ext.Viewport.add({
