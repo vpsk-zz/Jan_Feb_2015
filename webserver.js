@@ -52,7 +52,6 @@ function getInfo(request,response){
 function sendFile(url,response){
 	if(url.indexOf("?") != -1){
 		url = url.substring(0,url.indexOf('?'));
-		console.log(url);
 	}
 		
 	fs.readFile(url,function(err,data){
