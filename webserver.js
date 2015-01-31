@@ -9,12 +9,26 @@ var server = http.createServer(function(request,response){
 		getInfo(request,response);
 	else if(url.match(/movies/))
 		getMovies(request,response);
+	else if(url.match(/Cities/) != null){
+			getCitiesListInJSON(request,response);
+			//getCitiesList(request,response);
+	}
 	else
 		sendFile(url,response);	
 });
 server.listen(8080);
 console.log("Server waiting for requests");
 
+
+function getCitiesListInJSON(request,response){
+	var data = {
+		cities : [
+		 {name:"Chennai"},{name:"Pune"},{name:"Houston"},
+		 {name:"Cochin"},{name:"Bangalore"},{name:"Mumbai"}
+	   ]
+	};
+	response.end(JSON.stringify(data));
+}
 function getMovies(request,response){
 	var movies = {
 		moviesInIndia : [
@@ -36,6 +50,11 @@ function getInfo(request,response){
 }
 
 function sendFile(url,response){
+	if(url.indexOf("?") != -1){
+		url = url.substring(0,url.indexOf('?'));
+		console.log(url);
+	}
+		
 	fs.readFile(url,function(err,data){
 		if(err)
 			response.end("File not found " + url);
