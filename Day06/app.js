@@ -17,7 +17,7 @@ Ext.application({
         'Ext.MessageBox'
     ],
 	controllers : [
-		"BaseMainViewController"
+		// "BaseMainViewController"
 	],
 	profiles : [
 		"Phone","Tablet"

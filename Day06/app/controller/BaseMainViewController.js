@@ -10,7 +10,7 @@ Ext.define("ProfilesApp.controller.BaseMainViewController",{
 			}
 		}
 	},
-	onMainViewButtonTapped : function(){
-		//common code
+	someCommonCode : function(){
+		console.log("Common code");
 	}
 });
