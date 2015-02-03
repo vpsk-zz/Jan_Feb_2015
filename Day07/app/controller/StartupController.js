@@ -11,22 +11,54 @@ Ext.define("MyCabs.controller.StartupController",{
 	},
 	config : {
 		refs : {
-			noInternetView : "nointernetview"
+			noInternetView : "nointernetview",
+			homeScreen : "homescreen",
+			appMenu : "appmenu",
+			menuButton : "homescreen toolbar button"
+		},
+		control : {
+			menuButton : {
+				tap : "menuButtonTapped"
+			}
+		}
+	},
+	menuButtonTapped : function(){
+		if(!this.getAppMenu()){
+			var appMenu = Ext.create("AppMenu");
+			Ext.Viewport.setMenu(appMenu,{
+				side : "left",
+				reveal : true
+			});
+			Ext.Viewport.showMenu("left");
+		}
+		else{
+			if(this.getAppMenu().isHidden()){
+				Ext.Viewport.showMenu("left");	
+			}
+			else{
+				Ext.Viewport.hideMenu("left");
+			}
 		}
 	},
 	checkConnection : function(){
+		var me = StartupController.self;
 		Ext.Viewport.setMasked({xtype:"loadmask"});
 		if(!navigator.onLine){
-			if(!StartupController.self.getNoInternetView())
+			if(!me.getNoInternetView())
 				Ext.Viewport.setActiveItem({xtype:"nointernetview"});
-			else
-				Ext.Viewport.setActiveItem(StartupController.self.getNoInternetView());
+			else if(Ext.Viewport.getActiveItem() != me.getNoInternetView())
+				Ext.Viewport.setActiveItem(me.getNoInternetView());
 		}
 		else{
-			Ext.Viewport.setActiveItem({
-				xtype : "panel",
-				html : "You are online now"
-			});
+			if(!me.getHomeScreen()){
+				Ext.Viewport.setActiveItem({
+					xtype : "homescreen",
+					id : "id-homescreen"
+				});				
+			}
+			else{
+				Ext.Viewport.setActiveItem(me.getHomeScreen());	
+			}
 		}
 		Ext.Viewport.setMasked(false);
 	}

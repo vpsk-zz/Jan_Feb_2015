@@ -20,7 +20,7 @@ Ext.application({
 		"StartupController"
 	],
     views: [
-        "NoInternetView"
+        "NoInternetView","HomeScreen","AppMenu"
     ],
 
     icon: {
