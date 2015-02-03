@@ -17,7 +17,7 @@ Ext.application({
         'Ext.MessageBox'
     ],
 	controllers : [
-		"StartupController"
+		"StartupController","HomeController"
 	],
     views: [
         "NoInternetView","HomeScreen","AppMenu"

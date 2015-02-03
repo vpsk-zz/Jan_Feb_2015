@@ -56,7 +56,7 @@ Ext.define("MyCabs.controller.StartupController",{
 					id : "id-homescreen"
 				});				
 			}
-			else{
+			else if(Ext.Viewport.getActiveItem() != me.getHomeScreen()){
 				Ext.Viewport.setActiveItem(me.getHomeScreen());	
 			}
 		}

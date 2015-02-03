@@ -1,6 +1,9 @@
 Ext.define("MyCabs.view.HomeScreen",{
 	extend : "Ext.Panel",
 	alias : "widget.homescreen",
+    requires: [
+        'Ext.Map'
+    ],
 	config : {
 		items : [
 			{
@@ -12,6 +15,10 @@ Ext.define("MyCabs.view.HomeScreen",{
 						align : "left"
 					}
 				]
+			},
+			{
+			    xtype: 'map',
+				height : "100%"
 			}
 		]
 	}
