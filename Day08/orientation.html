@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.application({
+			launch : function(){
+				Ext.Viewport.add({
+					xtype : "panel",
+					items : [
+						{
+							xtype : "titlebar",
+							id : "id-titlebar",
+							title : Ext.Viewport.getOrientation()=="portrait"?"Day08-Portrait":"Day08 - Landscape",
+							height : "5%"
+						}
+					]
+				});
+				Ext.Viewport.on("orientationchange",function(src,ori){
+					if(ori == "portrait")
+						Ext.getCmp("id-titlebar").setTitle("Day08-Portrait");
+					else
+						Ext.getCmp("id-titlebar").setTitle("Day08-Landscape");
+				});
+			}
+		});
+		</script>
+	</head>
+</html>
