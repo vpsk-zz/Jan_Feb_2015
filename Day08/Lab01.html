@@ -2,16 +2,16 @@
 	<head>
 		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
 		<style>
-		.x-button-normal {
+		.x-button {
 			float:left;
 		}
-		.landscape .x-button-normal {
+		.landscape .x-button {
 			width:15%;
 			height:20%;
 			top:35%;
 			margin-left:8%;
 		}
-		.portrait .x-button-normal {
+		.portrait .x-button {
 			width:40%;
 			height:20%;
 			top:25%;
@@ -45,10 +45,10 @@
 					id : "id-mypanel",
 					cls : Ext.Viewport.getOrientation()
 				});
-				Ext.Viewport.on("orientationchange",function(src,ori{
+				Ext.Viewport.on("orientationchange",function(src,ori){
 					Ext.getCmp("id-mypanel").setCls(ori);
-				});
-			}	
+				})
+			}		
 		});
 		</script>
 	</head>
