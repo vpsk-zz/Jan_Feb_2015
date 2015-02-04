@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<style>
+		.x-button {
+			float:left;
+		}
+		.landscape .x-button {
+			width:15%;
+			height:20%;
+			top:35%;
+			margin-left:8%;
+		}
+		.portrait .x-button {
+			width:40%;
+			height:20%;
+			top:25%;
+			margin-left:7%;
+			margin-bottom:5%;
+		}
+		</style>
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.define("MyPanel",{
+			extend : "Ext.Panel",
+			alias : "widget.mypanel",
+			config : {
+				defaults : {
+					xtype : "button"
+				},
+				items : [
+					{iconCls : "home"},
+					{iconCls : "settings"},
+					{iconCls : "list"},
+					{iconCls : "home"}
+				]
+			}
+		});
+		
+		
+		Ext.application({
+			launch : function(){
+				Ext.Viewport.add({
+					xtype : "mypanel",
+					id : "id-mypanel",
+					cls : Ext.Viewport.getOrientation()
+				});
+				Ext.Viewport.on("orientationchange",function(src,ori){
+					Ext.getCmp("id-mypanel").setCls(ori);
+				})
+			}		
+		});
+		</script>
+	</head>
+</html>

@@ -1,0 +1,143 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css" type="text/css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.define("Contact",{
+			extend : "Ext.data.Model",
+			config : {
+				fields : ["name","phone"]
+			}
+		});
+		Ext.define("ContactStore",{
+			extend : "Ext.data.Store",
+			config : {
+				model : "Contact",
+			}
+		});
+		Ext.define("AddContactPanel",{
+			extend : "Ext.Panel",
+			config : {
+				items : [
+					{
+						xtype : "textfield", 
+						placeHolder : "Name",
+						id : "name"
+					},
+					{
+						xtype : "textfield", 
+						placeHolder : "Phone Number",
+						id : "phone"
+					},
+					{
+						xtype : "button",
+						text : "Add",
+						listeners : {
+							tap : addNewContactButtonTapped
+						}
+					}
+				]
+			}
+		});
+		Ext.define("RemoveContactPanel",{
+			extend : "Ext.Panel",
+			config : {
+				width : "100%",
+				items : [
+					{
+						xtype : "titlebar",title:"",
+						id : "removecontactpaneltitlebar",
+						height : "5%"
+					},
+					{
+						xtype : "button",
+						text : "Yes",
+						listeners : {
+							tap : yesButtonTapped
+						}
+					},
+					{
+						xtype : "button",
+						text : "No",
+						listeners : {
+							tap : noButtonTapped
+						}
+					}
+				]
+			}
+		});
+		var contactStore = Ext.create("ContactStore");
+		var addContactPanel,removeContactPanel;
+		var contactToBeRemoved;
+		function yesButtonTapped(){
+			contactToBeRemoved.destroy();
+			removeContactPanel.hide();
+		}
+		function noButtonTapped(){
+			removeContactPanel.hide();
+		}
+		function addContactIconTapped(src){
+			if(!addContactPanel){
+				addContactPanel = Ext.create("AddContactPanel");
+				addContactPanel.showBy(Ext.getCmp("addicon"));
+			}
+			else if(addContactPanel.isHidden())
+				addContactPanel.showBy(src);
+			else
+				addContactPanel.hide();
+		}
+		function addNewContactButtonTapped(){
+			contactStore.add({
+				name : Ext.getCmp("name").getValue(),
+				phone : Ext.getCmp("phone").getValue()
+			});
+			addContactPanel.hide();
+			Ext.getCmp("name").setValue("");
+			Ext.getCmp("phone").setValue("");
+		}
+		function contactItemTapHold(src,b,target,record){
+			if(!removeContactPanel){
+				removeContactPanel = Ext.create("RemoveContactPanel");
+			}
+			var removeContactPanelTitle = "Remove " + record.get("name") + "?";
+			Ext.getCmp("removecontactpaneltitlebar").setTitle(removeContactPanelTitle);
+			contactToBeRemoved = record;
+			removeContactPanel.showBy(target);
+		}
+		Ext.application({
+			launch : function(){
+				Ext.create("Ext.Panel",{
+					fullscreen : true,
+					items : [
+						{
+							xtype : "titlebar", 
+							title : "Contacts", 
+							height:"5%",
+							items : [
+								{
+									iconCls : "add",
+									id : "addicon",
+									align : "right",
+									listeners : {
+										tap : addContactIconTapped
+									}
+								}
+							]
+						},
+						{
+							xtype : "list",
+							store : contactStore,
+							itemTpl : "{name}&nbsp;&nbsp;&nbsp;{phone}",
+							listeners : {
+								itemtaphold : contactItemTapHold
+							}
+						}
+					]
+				});
+			}
+		});
+		</script>
+	</head>
+	<body>
+	</body>		
+</html>
